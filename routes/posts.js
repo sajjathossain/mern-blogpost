@@ -1,5 +1,5 @@
 // external imports
-import * as homeControllers from '../controllers/homeControllers.js'
+import * as postsControllers from '../controllers/postsControllers.js'
 
 import express from 'express'
 
@@ -7,6 +7,6 @@ const router = express.Router()
 
 
 // routers
-router.get('/', homeControllers.index)
+router.get('/', postsControllers.index)
 
 export default router

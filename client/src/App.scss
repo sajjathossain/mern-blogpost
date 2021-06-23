@@ -1,0 +1,14 @@
+.App {
+  height: 100%;
+  width: 100%;
+
+  position: absolute;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  .pages {
+    grid-column: 2;
+    padding: 1vh 1vw;
+  }
+}

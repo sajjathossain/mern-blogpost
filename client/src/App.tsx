@@ -1,11 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+
+import * as Pages from './pages'
+// ! Template Imports
+import * as Templates from './template'
+
+import { Route, Switch } from 'react-router-dom'
+
+import Home from './pages/Home/Home';
 
 function App() {
   return (
     <div className="App">
-      <h1>Mern Blog Post</h1>
+      <Templates.Navbar />
+
+      <div className="pages">
+        <Switch>
+          <Route path="/" component={Pages.Home} exact={true} />
+        </Switch>
+      </div>
     </div>
   );
 }
