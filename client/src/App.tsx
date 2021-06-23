@@ -6,8 +6,6 @@ import * as Templates from './template'
 
 import { Route, Switch } from 'react-router-dom'
 
-import Home from './pages/Home/Home';
-
 function App() {
   return (
     <div className="App">
@@ -16,6 +14,8 @@ function App() {
       <div className="pages">
         <Switch>
           <Route path="/" component={Pages.Home} exact={true} />
+          <Route path="/form" component={Pages.InputForm} exact={true} />
+          <Route path="/dashboard" component={Pages.Dashboard} exact={true} />
         </Switch>
       </div>
     </div>

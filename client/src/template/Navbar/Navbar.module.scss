@@ -3,7 +3,6 @@
   padding: 1vh 1vw;
 
   font-size: 1.5rem;
-  font-weight: 700;
 
   display: grid;
   grid-template-rows: 70% 1fr;
@@ -11,9 +10,16 @@
   box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.3);
 
   .navbarBrand {
+    font-weight: bold;
     text-orientation: mixed;
     text-transform: uppercase;
     writing-mode: vertical-lr;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.65);
+    }
   }
 
   .navLinks {
