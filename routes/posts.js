@@ -8,6 +8,6 @@ const router = express.Router()
 
 // routers
 router.get('/', postsControllers.index)
-router.pos('/create', postsControllers.createPost)
+router.post('/create', postsControllers.createPost)
 
 export default router

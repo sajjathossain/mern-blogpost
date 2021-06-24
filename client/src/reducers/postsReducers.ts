@@ -1,9 +1,9 @@
 interface actionInterface {
     type: string,
-    payload: object
+    payload: any
 }
 
-export default (posts = [], action: actionInterface) => {
+const reducers = (posts = [], action: actionInterface) => {
     switch (action.type) {
         case 'FETCH_ALL':
             return action.payload;
@@ -13,3 +13,5 @@ export default (posts = [], action: actionInterface) => {
             return posts;
     }
 }
+
+export default reducers

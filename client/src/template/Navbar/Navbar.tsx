@@ -1,4 +1,4 @@
-import { BsFillBackspaceFill, BsFillPlusSquareFill, BsPeopleCircle } from 'react-icons/bs'
+import { BsFillPlusSquareFill, BsPeopleCircle } from 'react-icons/bs'
 
 import { AiFillHome } from 'react-icons/ai'
 import { IoChevronBackCircleSharp } from 'react-icons/io5'

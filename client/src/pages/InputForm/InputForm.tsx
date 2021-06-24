@@ -1,3 +1,4 @@
+// import MDEditor from '@uiw/react-md-editor';
 import classes from './InputForm.module.scss'
 import { createPost } from '../../actions/posts'
 import { useDispatch } from 'react-redux'
@@ -21,6 +22,8 @@ const InputForm = (props: Props) => {
         e.preventDefault()
 
         dispatch(createPost(postData))
+        setPostData({ title: '', tags: '', message: ''})
+        window.alert('Post Created')
     }
 
     return (
@@ -37,6 +40,12 @@ const InputForm = (props: Props) => {
 
                 <div className={classes.formGroup}>
                     <textarea name="message" className={classes.textarea} placeholder="Enter message*" value={postData.message} onChange={(e) => setPostData({...postData, message: e.target.value})} required/>
+                    {/* <MDEditor
+                        className={classes.textarea}
+                        value={postData.message}
+                        onChange={(e) => setPostData({...postData, message: postData.message})}
+                    /> */}
+                    {/* <MDEditor.Markdown source={postData.message} /> */}
                 </div>
 
                 <div className={classes.formGroup}>
