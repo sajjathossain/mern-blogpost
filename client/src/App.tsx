@@ -6,7 +6,17 @@ import * as Templates from './template'
 
 import { Route, Switch } from 'react-router-dom'
 
+import { getPosts } from './actions/posts'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => { 
+    dispatch(getPosts())
+  }, [dispatch])
+
   return (
     <div className="App">
       <Templates.Navbar />
