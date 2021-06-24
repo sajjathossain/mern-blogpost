@@ -7,7 +7,7 @@
     "dev": "nodemon server.js",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "cd client && yarn start",
+    "client": "cd .. && cd client && yarn start",
     "concurrently": "concurrently -n server,client -c yellow,blue \" yarn start \" \" yarn run client \" "
   },
   "license": "MIT",
