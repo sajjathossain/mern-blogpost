@@ -7,14 +7,14 @@ import { useState } from 'react'
 interface Props {
     title: string,
     tags: string,
-    message: string
+    message?: string
 }
 
 const InputForm = (props: Props) => {
     const [postData, setPostData] = useState({
         title: '',
         tags: '',
-        message: ''
+        message: ""
     })
     const dispatch = useDispatch()
 
@@ -38,13 +38,9 @@ const InputForm = (props: Props) => {
                     <input type="text" name="title" placeholder="Enter tags [tag1 tag2]" value={postData.tags} onChange={(e) => setPostData({...postData, tags: e.target.value})} required/>
                 </div>
 
-                <div className={classes.formGroup}>
-                    <textarea name="message" className={classes.textarea} placeholder="Enter message*" value={postData.message} onChange={(e) => setPostData({...postData, message: e.target.value})} required/>
-                    {/* <MDEditor
-                        className={classes.textarea}
-                        value={postData.message}
-                        onChange={(e) => setPostData({...postData, message: postData.message})}
-                    /> */}
+                <div className={`${classes.markdown}`}>
+                    {/* <textarea name="message" className={classes.textarea} placeholder="Enter message*" value={postData.message} onChange={(e) => setPostData({...postData, message: e.target.value})} required/> */}
+                    <textarea placeholder="Enter text" onChange={(e) => setPostData({...postData, message: e.target.value})} value={postData.message}/>
                     {/* <MDEditor.Markdown source={postData.message} /> */}
                 </div>
 

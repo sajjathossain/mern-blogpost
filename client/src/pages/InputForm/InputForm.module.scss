@@ -29,7 +29,6 @@
   .form {
     width: 85%;
     height: 95%;
-    // border: 1px solid #000000b6;
     padding: 1vh 1vw;
 
     display: grid;
@@ -60,6 +59,41 @@
         background-color: rgba(46, 185, 178, 0.781);
         color: #fff;
         border-radius: 5px;
+      }
+    }
+
+    .markdown {
+      display: flex;
+      justify-content: space-around;
+
+      * {
+        height: 100%;
+        width: 100%;
+        padding: 1vh 1vw;
+      }
+
+      gr-highlighter {
+        display: none;
+      }
+
+      &:nth-child(1) {
+        resize: none;
+        position: fixed;
+        position: relative;
+        grid-column: 1;
+        background-color: rgba(0, 0, 0, 0.02) !important;
+
+        * {
+          position: absolute;
+        }
+      }
+
+      &:nth-child(2) {
+        margin-left: 1vw;
+        position: relative;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        grid-column: 2;
+        background-color: rgb(255, 255, 255) !important;
       }
     }
   }

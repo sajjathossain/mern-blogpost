@@ -4,7 +4,7 @@ export const getPosts = () => async (dispatch: any) =>{
     try {
         const { data }: any = await api.fetchPosts()
 
-        dispatch({ type: 'FETCH_ALL', posts: data})
+        dispatch({ type: 'FETCH_ALL', payload: data})
     } catch (error) {
         console.log(error.message)
     }
@@ -14,7 +14,7 @@ export const createPost = (post: object) => async (dispatch: any) =>{
     try {
         const { data }: any = await api.createPost(post)
 
-        dispatch({ type: 'CREATE', posts: data})
+        dispatch({ type: 'CREATE', payload: data})
     } catch (error) {
         console.log(error.message)
     }

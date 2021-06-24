@@ -7,7 +7,7 @@ function Home(){
     console.log(posts)
     return (
         <div>
-            <Posts />
+            <Posts posts={posts.posts}/>
         </div>
     )
 }
