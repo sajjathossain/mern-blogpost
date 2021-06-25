@@ -1,8 +1,10 @@
-// import MDEditor from '@uiw/react-md-editor';
+import { useEffect, useState } from 'react'
+
+import MDEditor from '@uiw/react-md-editor';
 import classes from './InputForm.module.scss'
 import { createPost } from '../../actions/posts'
+// import marked from 'marked';
 import { useDispatch } from 'react-redux'
-import { useState } from 'react'
 
 interface Props {
     title: string,
@@ -16,6 +18,8 @@ const InputForm = (props: Props) => {
         tags: '',
         message: ""
     })
+    const [editing, setEditing] = useState(true)
+
     const dispatch = useDispatch()
 
     const handleSubmit = (e: any) => { 
@@ -26,9 +30,30 @@ const InputForm = (props: Props) => {
         window.alert('Post Created')
     }
 
+    const toggleView = () => { 
+        setEditing(!editing)
+    }
+
+    // const getMarkdownText = () => {
+    //     let rawMarkup = marked(postData.message, {sanitize: false});
+    //     return { __html: rawMarkup };
+    // }
+
+    useEffect(() => {
+        setEditing(editing)
+    }, [editing])
+
+    console.log(editing)
+
     return (
         <div className={classes.container}>
-            {/* <h1 className={classes.header}>Let's post and teach others!</h1> */}
+            <div className={classes.header}>
+                <div className={classes.text}>Let's Post!</div>
+                <div className={classes.switcher}>
+                    <button type="button" className={`${classes.btn} ${editing ? `${classes.active}` : ''}`} onClick={() => toggleView()}>Edit</button>
+                    <button type="button" className={`${classes.btn} ${!editing ? `${classes.active}` : ''}`} onClick={() => toggleView()}>Preview</button>
+                </div> 
+            </div>
             <form className={classes.form} onSubmit={handleSubmit}>
                 <div className={classes.formGroup}>
                     <input type="text" name="title" placeholder="Enter title*" value={postData.title} onChange={(e) => setPostData({...postData, title: e.target.value})} required/>
@@ -39,9 +64,9 @@ const InputForm = (props: Props) => {
                 </div>
 
                 <div className={`${classes.markdown}`}>
-                    {/* <textarea name="message" className={classes.textarea} placeholder="Enter message*" value={postData.message} onChange={(e) => setPostData({...postData, message: e.target.value})} required/> */}
-                    <textarea placeholder="Enter text" onChange={(e) => setPostData({...postData, message: e.target.value})} value={postData.message}/>
-                    {/* <MDEditor.Markdown source={postData.message} /> */}
+                    <textarea className={classes.textarea} placeholder="Enter text" onChange={(e) => setPostData({...postData, message: e.target.value})} value={postData.message}/>
+                    <MDEditor.Markdown source={postData.message} className={`${editing ? classes.editorPrev : classes.markdownPrev}`}/>
+                    {/* <div className={`${editing ? classes.editorPrev : classes.markdownPrev}`} dangerouslySetInnerHTML={getMarkdownText()} /> */}
                 </div>
 
                 <div className={classes.formGroup}>
