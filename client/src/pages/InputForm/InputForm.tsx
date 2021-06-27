@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import MDEditor from '@uiw/react-md-editor';
 import classes from './InputForm.module.scss'
 import { createPost } from '../../actions/posts'
-// import marked from 'marked';
 import { useDispatch } from 'react-redux'
 
 interface Props {
@@ -34,11 +33,6 @@ const InputForm = (props: Props) => {
         setEditing(!editing)
     }
 
-    // const getMarkdownText = () => {
-    //     let rawMarkup = marked(postData.message, {sanitize: false});
-    //     return { __html: rawMarkup };
-    // }
-
     useEffect(() => {
         setEditing(editing)
     }, [editing])
@@ -64,9 +58,8 @@ const InputForm = (props: Props) => {
                 </div>
 
                 <div className={`${classes.markdown}`}>
-                    <textarea className={classes.textarea} placeholder="Enter text" onChange={(e) => setPostData({...postData, message: e.target.value})} value={postData.message}/>
+                    <textarea className={classes.textarea} style={{ display: editing ? 'block' : 'none' }} placeholder="Enter text" onChange={(e) => setPostData({...postData, message: e.target.value})} value={postData.message}/>
                     <MDEditor.Markdown source={postData.message} className={`${editing ? classes.editorPrev : classes.markdownPrev}`}/>
-                    {/* <div className={`${editing ? classes.editorPrev : classes.markdownPrev}`} dangerouslySetInnerHTML={getMarkdownText()} /> */}
                 </div>
 
                 <div className={classes.formGroup}>

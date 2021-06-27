@@ -68,9 +68,10 @@
   textarea {
     border: none;
     outline: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 1vh 1vw;
     border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.02);
     resize: none;
 
     &:active,
@@ -99,7 +100,6 @@
         height: 100%;
         width: 100%;
         padding: 1vh 1vw;
-        background-color: rgba(0, 0, 0, 0.02);
       }
 
       .submitBtn {
@@ -117,12 +117,8 @@
 
     .markdown {
       position: relative;
-
-      // * {
-      //   height: 100%;
-      //   width: 100%;
-      //   padding: 1vh 1vw;
-      // }
+      overflow-x: auto;
+      overflow-y: auto;
 
       gr-highlighter {
         display: none;
@@ -132,14 +128,16 @@
         position: absolute;
         height: 100%;
         width: 100%;
+        // font-size: 1rem !important;
       }
 
       .markdownPrev {
+        font-size: 1rem !important;
         width: 100%;
         padding: 1vh 1vw;
         position: absolute;
         background-color: #fff;
-        z-index: 100;
+        z-index: 1;
       }
 
       .editorPrev {
