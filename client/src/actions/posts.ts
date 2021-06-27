@@ -3,8 +3,8 @@ import * as api from '../api'
 export const getPosts = () => async (dispatch: any) =>{
     try {
         const { data }: any = await api.fetchPosts()
-
-        dispatch({ type: 'FETCH_ALL', payload: data})
+        console.log(data)
+        await dispatch({ type: 'FETCH_ALL', payload: data})
     } catch (error) {
         console.log(error.message)
     }

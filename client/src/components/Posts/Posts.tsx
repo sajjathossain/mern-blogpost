@@ -1,55 +1,43 @@
-import { useEffect, useState } from 'react'
-
-import Post from './Post/Post'
-import {Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import classes from './Posts.module.scss'
+import { useSelector } from 'react-redux'
 
-interface Props {
-    posts: {
-        msg: string,
-        posts: any
-    }
-}
+const Posts = () => {
+    const postData = useSelector((state: { postReducers: any }) => state.postReducers)
 
-const Posts = (props: Props) => {
-    const [data, setData]: any = useState()
-    const [isLoading, setIsLoading] = useState(true)
-
-    useEffect(() => {
-        const getData = async () => {
-            try {
-                await setData(props.posts.posts)
-                setIsLoading(false)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        getData()
-    }, [isLoading])
-    console.log(data)
+    console.log(postData)
+    
     return (
         <>
             {
-                isLoading === true || data === null ? <h1>Loading</h1> : 
-                <div className={classes.container}>
+                !postData ? <h1>Loading</h1> :
+                    <div className={classes.container}>
                     {
-                        data.map((post: any) => {
-                            return (
-                                <div className="card" key={post._id}>
-                                    <div className="cardTitle">
-                                        {post.title}
+                        postData.map((post: any) => (
+                            <div className={classes.card} key={post._id}>
+                                <div className={classes.cardContainer}>
+                                    <div className={classes.header}>
+                                        <div className={classes.title}>
+                                            <div className={classes.text}>
+                                                {post.title}
+                                                <sup className={classes.tags}>
+                                                    {post.tags} 
+                                                </sup>
+                                            </div>
+                                        </div>
+                                        <div className={classes.date}>
+                                            {post.createdAt}
+                                        </div>
                                     </div>
-                                    <div className="createdAt">
-                                        {post.createdAt}
+                                    <div className={classes.extra}>
+                                        <Link to={`/posts/${post._id}`} className={classes.btn}>Read more!</Link>
                                     </div>
                                 </div>
-                            )
-                        })
+                            </div>
+                        ))
                     }
                 </div>
-            } 
-            <Route path="/post/:id" component={Post} exact={true} />
+            }
         </>
     )
 }

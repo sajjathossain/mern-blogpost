@@ -1,13 +1,14 @@
+import Post from "../../components/Post/Post";
 import Posts from "../../components/Posts/Posts";
+import {Route} from 'react-router-dom'
 import classes from './Home.module.scss'
-import { useSelector } from 'react-redux'
 
 function Home(){
-    const posts = useSelector((state: { postReducers: any }) => state.postReducers)
     
     return (
         <div className={classes.container}>
-            <Posts posts={posts}/>
+            <Route path="/" component={Posts} exact={true} />
+            <Route path="/post/:id" component={Post} exact={true} />
         </div>
     )
 }
