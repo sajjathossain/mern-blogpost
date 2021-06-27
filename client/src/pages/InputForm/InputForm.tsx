@@ -1,8 +1,8 @@
+import { createPost, getPosts } from '../../actions/posts'
 import { useEffect, useState } from 'react'
 
 import MDEditor from '@uiw/react-md-editor';
 import classes from './InputForm.module.scss'
-import { createPost } from '../../actions/posts'
 import { useDispatch } from 'react-redux'
 
 interface Props {
@@ -25,8 +25,8 @@ const InputForm = (props: Props) => {
         e.preventDefault()
 
         dispatch(createPost(postData))
+        dispatch(getPosts())
         setPostData({ title: '', tags: '', message: ''})
-        window.alert('Post Created')
     }
 
     const toggleView = () => { 
@@ -36,8 +36,6 @@ const InputForm = (props: Props) => {
     useEffect(() => {
         setEditing(editing)
     }, [editing])
-
-    console.log(editing)
 
     return (
         <div className={classes.container}>

@@ -4,7 +4,7 @@ export const index = async (req, res) => {
     try {
         const posts = await PostsModel.find()
 
-        console.log(posts)
+        // console.log(posts)
         res.status(200).json({posts, msg: 'All Posts'})
     } catch (error) {
         res.status(400).json({ msg: error.message })
