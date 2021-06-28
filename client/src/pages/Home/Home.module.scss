@@ -6,3 +6,7 @@
   justify-content: center;
   overflow-y: scroll;
 }
+
+.container::-webkit-scrollbar {
+  display: none;
+}
