@@ -34,7 +34,7 @@ const Posts = () => {
                                         </div> */}
                                     </div>
                                     <div className={classes.extra}>
-                                        <Link to={`/posts/${post._id}`} className={classes.btn}>
+                                        <Link to={`/post/${post._id}`} className={classes.btn}>
                                             <FaBookReader />
                                         </Link>
                                         <Link to="/delete" className={classes.btn}>

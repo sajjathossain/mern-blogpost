@@ -9,6 +9,8 @@ const reducers = (posts = [], action: actionInterface) => {
             return action.payload;
         case 'CREATE':
             return [...posts, action.payload];
+        // case 'GET_POST':
+        //     return action.payload;
         default:
             return posts;
     }
