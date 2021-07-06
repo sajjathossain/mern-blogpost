@@ -9,6 +9,11 @@
 
   $header-form-width: 85%;
 
+  legend {
+    margin-left: 2vw;
+    padding: 0 1vw;
+  }
+
   .active {
     box-shadow: inset 5px 2px 5px rgba(0, 0, 0, 0.3) !important;
     pointer-events: none;
@@ -23,7 +28,7 @@
     align-items: center;
 
     .text {
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: 600;
     }
 
@@ -66,7 +71,7 @@
 
   input,
   textarea {
-    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     outline: none;
     font-size: 1rem;
     padding: 1vh 1vw;

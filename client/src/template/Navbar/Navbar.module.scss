@@ -33,20 +33,27 @@
     .navLink {
       a {
         color: rgba(0, 0, 0, 1);
-      }
 
-      &:hover {
-        a {
-          color: rgba(0, 0, 0, 0.65);
+        &:hover,
+        &:active,
+        &:focus {
+          color: lightseagreen;
         }
       }
 
-      &:active,
-      &:focus {
-        a {
-          color: lightseagreen !important;
-        }
-      }
+      // &:hover {
+      //   a {
+      //     color: lightseagreen;
+      //     // color: rgba(0, 0, 0, 0.65);
+      //   }
+      // }
+
+      // &:active,
+      // &:focus {
+      //   a {
+      //     color: lightseagreen !important;
+      //   }
+      // }
     }
   }
 }

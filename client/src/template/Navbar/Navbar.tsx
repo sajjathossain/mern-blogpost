@@ -8,7 +8,7 @@ import classes from './Navbar.module.scss'
 const Navbar = () => {
     return (
         <nav className={classes.container}>
-            <div className={classes.navbarBrand}>Dev Blog</div>
+            <div className={classes.navbarBrand}>DBlog</div>
             <ul className={classes.navLinks}>
                 <li className={classes.navLink}>
                     <Link to={"/form"}>

@@ -1,7 +1,9 @@
 import './App.scss';
 
 import * as Pages from './pages'
-// ! Template Imports
+/* -------------------------------------------------------------------------- */
+/*                                 Template Imports                           */
+/* -------------------------------------------------------------------------- */
 import * as Templates from './template'
 
 import { Route, Switch } from 'react-router-dom'
