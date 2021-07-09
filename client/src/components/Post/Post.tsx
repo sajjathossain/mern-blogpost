@@ -1,25 +1,37 @@
-import { Link, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
+import { FaCaretSquareLeft } from 'react-icons/fa'
+import MDEditor from '@uiw/react-md-editor';
+import classes from './Post.module.scss'
 
 const Post = () => {
-    const params: any = useParams()
-    const postData = useSelector((state: { postReducers: any }) => state.postReducers)
-    const [post, setPost] = useState({})
-    useEffect(() => {
-        const fetchPost = async () => {
-            await setPost(postData.find((value: any) => value._id === params.id))
-        }
-
-        fetchPost()
-        console.log(post)
-    }, [params._id])
+    let blog:any = useLocation().state
 
     return (
-        <div>
-            <h1>This is Post</h1>
-            <Link to="/">Back</Link>
+        <div className={classes.container}>
+            <div className={classes.top}>
+                <Link to="/" className={classes.link}>
+                    <FaCaretSquareLeft /> Go Back
+                </Link>
+                <span className={classes.date}>
+                    {blog.createdAt ? blog.createdAt : 'unknown'}
+                </span>
+            </div>
+            <div className={classes.content}>
+                <div className={classes.title}>
+                    <div className={classes.text}>{blog.title}</div>
+                     <div className={classes.tags}>
+                        {
+                            blog.tags.map((tag: string, index: number) => {
+                                return <div className={classes.tag} key={index}>{tag}</div>
+                            })
+                        }
+                    </div>
+                </div>
+                <div className={classes.render}>
+                    <MDEditor.Markdown source={blog.message} className={classes.markdown} />
+                </div>
+            </div>
         </div>
     )
 }

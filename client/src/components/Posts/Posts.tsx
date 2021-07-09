@@ -18,7 +18,7 @@ const Posts = () => {
             <div className={classes.contents}>
             {
                 !postData ? <h1>Loading</h1> :
-                    <div className={classes.postsContainer}>
+                <div className={classes.postsContainer}>
                     {
                         postData.map((post: any) => (
                             <div className={classes.card} key={post._id}>
@@ -29,12 +29,15 @@ const Posts = () => {
                                                 {post.title}
                                             </div>
                                         </div>
-                                        {/* <div className={classes.date}>
+                                        <div className={classes.date}>
                                             {post.createdAt}
-                                        </div> */}
+                                        </div>
                                     </div>
                                     <div className={classes.extra}>
-                                        <Link to={`/post/${post._id}`} className={classes.btn}>
+                                        <Link to={{
+                                            'pathname': `/post/${post._id}`,
+                                            'state': post
+                                            }}  className={classes.btn}>
                                             <FaBookReader />
                                         </Link>
                                         <Link to="/delete" className={classes.btn}>
