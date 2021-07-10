@@ -1,8 +1,10 @@
+import classes from './Page404.module.scss'
+
 const Page404 = () => {
     return (
-        <div>
-            <h1>404!</h1>
-            <h2>Page not Found!</h2>
+        <div className={classes.container}>
+            <div className={classes.content}>
+            </div>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import { AiFillLike, AiTwotoneDelete } from 'react-icons/ai'
 
 import { FaBookReader } from 'react-icons/fa'
 import {Link} from 'react-router-dom'
+import Moment from 'react-moment'
 import classes from './Posts.module.scss'
 import { useSelector } from 'react-redux'
 
@@ -30,7 +31,8 @@ const Posts = () => {
                                             </div>
                                         </div>
                                         <div className={classes.date}>
-                                            {post.createdAt}
+                                            <strong>Created: </strong>
+                                            {post.createdAt ? <Moment  date={new Date(post.createdAt)} fromNow ago /> : 'unknown'} ago
                                         </div>
                                     </div>
                                     <div className={classes.extra}>
