@@ -1,4 +1,5 @@
 import PostsModel from "../models/postsModel.js"
+import mongoose from 'mongoose'
 
 export const index = async (req, res) => {
     try {
@@ -34,5 +35,11 @@ export const deletePost = async (req, res) => {
 }
 
 export const updatePost = async (req, res) => {
-    console.log("Getting Post")
+    const { id: _id } = req.params
+    const post = req.body
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404)
+
+    const updatedPost = await PostsModel.findByIdAndUpdate(_id, post, { new: true })
+    return res.json(updatedPost)
 }

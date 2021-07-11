@@ -31,7 +31,7 @@
       place-items: center;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(auto, clamp(10vh, 15vh, 50vh));
-      gap: 1.5vh 1vw;
+      gap: 1.5vh 0.5vw;
 
       .card {
         width: 98%;
@@ -85,8 +85,7 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            // display: flex;
-            // justify-content: space-evenly;
+
             .btn {
               margin: 0 0.2vw;
               padding: 0.5vh 0.5vw;
@@ -96,15 +95,15 @@
               border-radius: 5px;
               font-weight: bold;
               text-align: center;
-              font-size: 1.125rem;
+              font-size: 0.95rem;
 
-              &:nth-child(2):hover {
-                background-color: rgba(255, 0, 0, 0.61) !important;
-              }
-
-              &:nth-child(2n-1):hover {
+              &:hover {
                 background-color: rgba(78, 133, 252, 0.75);
               }
+            }
+
+            .deleteBtn:hover {
+              background-color: rgba(255, 0, 0, 0.61) !important;
             }
           }
         }

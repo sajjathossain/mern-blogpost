@@ -1,6 +1,6 @@
 import { AiFillLike, AiTwotoneDelete } from 'react-icons/ai'
+import { FaBookReader, FaPencilRuler } from 'react-icons/fa'
 
-import { FaBookReader } from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import Moment from 'react-moment'
 import classes from './Posts.module.scss'
@@ -42,9 +42,18 @@ const Posts = () => {
                                             }}  className={classes.btn}>
                                             <FaBookReader />
                                         </Link>
-                                        <Link to="/delete" className={classes.btn}>
+
+                                        <Link to={{
+                                            'pathname': `/form/${post._id}`,
+                                            'state': post
+                                        }} className={classes.btn}>
+                                            <FaPencilRuler /> 
+                                        </Link>
+
+                                        <Link to="/delete" className={`${classes.btn} ${classes.deleteBtn}`}>
                                             <AiTwotoneDelete />
                                         </Link>
+                                        
                                         <Link to="/like" className={classes.btn}>
                                             {post.likeCount} <AiFillLike /> 
                                         </Link>

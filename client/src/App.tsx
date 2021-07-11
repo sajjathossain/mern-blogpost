@@ -28,6 +28,7 @@ function App() {
           <Route path="/" component={Pages.Home} exact={true} />
           <Route path="/post/:id" component={Pages.Home} exact={true} />
           <Route path="/form" component={Pages.InputForm} exact={true} />
+          <Route path="/form/:id" component={Pages.InputForm} exact={true} />
           <Route path="/dashboard" component={Pages.Dashboard} exact={true} />
           <Route component={Pages.Page404} />
         </Switch>

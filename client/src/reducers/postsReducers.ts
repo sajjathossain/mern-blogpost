@@ -11,6 +11,8 @@ const reducers = (posts = [], action: actionInterface) => {
             return [...posts, action.payload];
         // case 'GET_POST':
         //     return action.payload;
+        case 'UPDATE':
+            return posts.map((post: any) => post._id === action.payload._id ? action.payload : post)
         default:
             return posts;
     }

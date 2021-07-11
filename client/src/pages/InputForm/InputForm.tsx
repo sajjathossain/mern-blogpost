@@ -1,6 +1,8 @@
-import { createPost, getPosts } from '../../actions/posts'
+import { Link, useLocation } from 'react-router-dom'
+import { createPost, getPosts, updatePost } from '../../actions/posts'
 import { useEffect, useState } from 'react'
 
+import { IoCaretBackOutline } from 'react-icons/io5'
 import MDEditor from '@uiw/react-md-editor';
 import classes from './InputForm.module.scss'
 import { useDispatch } from 'react-redux'
@@ -12,6 +14,7 @@ interface Props {
 }
 
 const InputForm = (props: Props) => {
+    const blog:any = useLocation().state
     const [postData, setPostData] = useState({
         title: '',
         tags: '',
@@ -24,7 +27,12 @@ const InputForm = (props: Props) => {
     const handleSubmit = (e: any) => { 
         e.preventDefault()
 
-        dispatch(createPost(postData))
+        if(blog._id) {
+            dispatch(updatePost(blog._id, postData))
+            blog._id = null
+        } else {
+            dispatch(createPost(postData))
+        }
         dispatch(getPosts())
         setPostData({ title: '', tags: '', message: ''})
     }
@@ -34,13 +42,22 @@ const InputForm = (props: Props) => {
     }
 
     useEffect(() => {
-        setEditing(editing)
-    }, [editing])
+        // setEditing(editing)
+        if(blog) {
+            setPostData({ title: blog.title, tags: blog.tags, message: blog.message })
+        }
+        console.log(blog)
+    }, [blog])
 
     return (
         <div className={classes.container}>
             <div className={classes.header}>
-                <div className={classes.text}>Let's Post!</div>
+                <div className={classes.text}>
+                    <Link to={'/'} className={classes.hLink}>
+                        <IoCaretBackOutline />
+                        Home
+                    </Link>
+                </div>
                 <div className={classes.switcher}>
                     <button type="button" className={`${classes.btn} ${editing ? `${classes.active}` : ''}`} onClick={() => toggleView()}>Edit</button>
                     <button type="button" className={`${classes.btn} ${!editing ? `${classes.active}` : ''}`} onClick={() => toggleView()}>Preview</button>

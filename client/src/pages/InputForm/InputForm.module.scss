@@ -15,7 +15,8 @@
   }
 
   .active {
-    box-shadow: inset 5px 2px 5px rgba(0, 0, 0, 0.3) !important;
+    background-color: rgb(73, 176, 224) !important;
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.3);
     pointer-events: none;
   }
 
@@ -28,8 +29,19 @@
     align-items: center;
 
     .text {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 600;
+      .hLink {
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.75);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &:hover {
+          color: rgba(46, 185, 178, 0.781);
+        }
+      }
     }
 
     .switcher {
