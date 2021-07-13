@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { createPost, getPosts, updatePost } from '../../actions/posts'
 import { useEffect, useState } from 'react'
 
@@ -14,7 +14,8 @@ interface Props {
 }
 
 const InputForm = (props: Props) => {
-    const blog:any = useLocation().state
+    let blog:any = useLocation().state
+    const history: any = useHistory()
     const [postData, setPostData] = useState({
         title: '',
         tags: '',
@@ -29,12 +30,12 @@ const InputForm = (props: Props) => {
 
         if(blog._id) {
             dispatch(updatePost(blog._id, postData))
-            blog._id = null
         } else {
             dispatch(createPost(postData))
         }
         dispatch(getPosts())
         setPostData({ title: '', tags: '', message: ''})
+        history.push('')
     }
 
     const toggleView = () => { 
@@ -42,7 +43,6 @@ const InputForm = (props: Props) => {
     }
 
     useEffect(() => {
-        // setEditing(editing)
         if(blog) {
             setPostData({ title: blog.title, tags: blog.tags, message: blog.message })
         }
@@ -78,7 +78,7 @@ const InputForm = (props: Props) => {
                 </div>
 
                 <div className={classes.formGroup}>
-                    <input type="submit" className={classes.submitBtn} value="Submit" />
+                    <input type="submit" className={`${classes.submitBtn} ${blog ? classes.updateBtn : classes.createBtn }`} value={blog ? "Update Post" : "Create Post"} />
                 </div>
             </form>
         </div>

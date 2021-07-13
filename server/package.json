@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js",
-    "server": "nodemon server.js",
+    "server": "node server.js",
     "client": "cd .. && cd client && yarn start",
-    "concurrently": "concurrently -n server,client -c yellow,blue \" yarn start \" \" yarn run client \" "
+    "concurrently": "concurrently -n server,client -c yellow,blue \" yarn run server \" \" yarn run client \" "
   },
   "license": "MIT",
   "dependencies": {

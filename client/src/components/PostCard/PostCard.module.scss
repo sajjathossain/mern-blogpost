@@ -1,0 +1,75 @@
+.card {
+  width: 98%;
+  height: 100%;
+  margin: 1vh 0;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: rgba(153, 153, 153, 0.05);
+  border-radius: 5px;
+
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform linear 0.333s;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  .cardContainer {
+    height: 100%;
+    margin: 1vh 1vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+
+    .header {
+      .title {
+        font-weight: bold;
+        .text {
+          font-size: 2rem;
+          text-overflow: ellipsis;
+        }
+
+        .tags {
+          margin-left: 0.5vw;
+          padding: 0.2vh 0.2vw;
+          background-color: rgb(92, 143, 255);
+          color: #fff;
+          font-size: 0.7rem;
+          border-radius: 15%;
+        }
+      }
+      .date {
+        margin-top: 0.5vh;
+        font-size: 0.8rem !important;
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    .extra {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .btn {
+        margin: 0 0.2vw;
+        padding: 0.5vh 0.5vw;
+        background-color: rgb(92, 143, 255);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 0.95rem;
+
+        &:hover {
+          background-color: rgba(78, 133, 252, 0.75);
+        }
+      }
+
+      .deleteBtn:hover {
+        background-color: rgba(255, 0, 0, 0.61) !important;
+      }
+    }
+  }
+}

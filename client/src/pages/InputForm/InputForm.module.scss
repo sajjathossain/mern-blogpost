@@ -120,15 +120,26 @@
       }
 
       .submitBtn {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         width: 30%;
         height: 5vh;
         padding: 1vh 1vw;
 
         border: none;
-        background-color: rgba(46, 185, 178, 0.781);
         color: #fff;
         border-radius: 5px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .createBtn {
+        background-color: rgba(46, 185, 178, 0.781);
+      }
+
+      .updateBtn {
+        background-color: rgba(32, 157, 230, 0.781);
       }
     }
 
