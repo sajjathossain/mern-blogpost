@@ -6,8 +6,6 @@ import { useSelector } from 'react-redux'
 
 const Posts = () => {
     const postData = useSelector((state: { postReducers: any }) => state.postReducers)
-
-    console.log(postData)
     
     return (
         <div className={classes.container}>

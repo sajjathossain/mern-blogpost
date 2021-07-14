@@ -15,7 +15,7 @@ const SearchBar = () => {
     return (
         <form method="POST" className={`${classes.container}`} onSubmit={handleSubmit}>
             <div className={classes.searchBar}>
-                <input onChange={(e) => setSearchData(e.target.value)} value={searchData} type="text" placeholder="Enter tag" name="search" id="search" required />
+                <input autoComplete={"off"} onChange={(e) => setSearchData(e.target.value)} value={searchData} type="text" placeholder="Enter tag" name="search" id="search" required />
                 <button type="submit" className={classes.btn}>
                     <GoSearch />
                 </button>

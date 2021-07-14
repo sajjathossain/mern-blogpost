@@ -1,11 +1,16 @@
-import Dashboard from "./Dashboard/Dashboard";
-import Home from "./Home/Home";
-import InputForm from './InputForm/InputForm'
-import Page404 from './Page404/Page404'
+import React from 'react';
+
+const Dashboard = React.lazy(() => import('./Dashboard/Dashboard'));
+
+const Home = React.lazy(() => import('./Home/Home'))
+
+const InputForm = React.lazy(() => import('./InputForm/InputForm'))
+
+const Page404 = React.lazy(() => import('./Page404/Page404'))
 
 export { 
+    Dashboard,
     Home,
     InputForm,
-    Dashboard,
     Page404
 }

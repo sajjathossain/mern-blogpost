@@ -13,7 +13,7 @@ const Post = () => {
         <div className={classes.container}>
             <div className={classes.top}>
                 <Link to="/" className={classes.link}>
-                    <FaCaretSquareLeft /> Go Back
+                    <FaCaretSquareLeft /> Home
                 </Link>
                 <span className={classes.date}>
                     <>

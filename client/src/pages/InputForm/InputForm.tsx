@@ -25,19 +25,34 @@ const InputForm = (props: Props) => {
 
     const dispatch = useDispatch()
 
+    /* -------------------------------------------------------------------------- */
+    /*                        NOTE handling submit request                       */
+    /* -------------------------------------------------------------------------- */
     const handleSubmit = (e: any) => { 
         e.preventDefault()
 
         if(blog._id) {
-            dispatch(updatePost(blog._id, postData))
+            if(window.confirm('Are you sure you want to update?')){
+                dispatch(updatePost(blog._id, postData))
+                history.push('')
+            } 
+            
+            history.goBack()
         } else {
-            dispatch(createPost(postData))
+            if(window.confirm('Are you sure you want to create the post?')){
+                dispatch(createPost(postData))
+                history.push('')
+            } 
+
+            history.goBack()
         }
         dispatch(getPosts())
         setPostData({ title: '', tags: '', message: ''})
-        history.push('')
     }
 
+    /* -------------------------------------------------------------------------- */
+    /*                 NOTE toggling view between edit and preview                */
+    /* -------------------------------------------------------------------------- */
     const toggleView = () => { 
         setEditing(!editing)
     }
@@ -50,7 +65,7 @@ const InputForm = (props: Props) => {
     }, [blog])
 
     return (
-        <div className={classes.container}>
+        <div className={classes.container}> {/* *container starts */}
             <div className={classes.header}>
                 <div className={classes.text}>
                     <Link to={'/'} className={classes.hLink}>
@@ -64,23 +79,28 @@ const InputForm = (props: Props) => {
                 </div> 
             </div>
             <form className={classes.form} onSubmit={handleSubmit}>
-                <div className={classes.formGroup}>
-                    <input type="text" name="title" placeholder="Enter title*" value={postData.title} onChange={(e) => setPostData({...postData, title: e.target.value})} required/>
+                {/* title */}
+                <div className={classes.formGroup}> 
+                    <input autoComplete="off" type="text" name="title" placeholder="Enter title*" value={postData.title} onChange={(e) => setPostData({...postData, title: e.target.value})} required/>
                 </div>
                 
+                {/* tags */}
                 <div className={classes.formGroup}>
-                    <input type="text" name="title" placeholder="Enter tags [tag1 tag2]" value={postData.tags} onChange={(e) => setPostData({...postData, tags: e.target.value})} required/>
+                    <input autoComplete="off" type="text" name="tags" placeholder="Enter tags [tag1 tag2]" value={postData.tags} onChange={(e) => setPostData({...postData, tags: e.target.value})} required/>
                 </div>
 
-                <div className={`${classes.markdown}`}>
-                    <textarea className={classes.textarea} style={{ display: editing ? 'block' : 'none' }} placeholder="Enter text" onChange={(e) => setPostData({...postData, message: e.target.value})} value={postData.message}/>
+                {/* content */}
+                <div className={`${classes.markdown}`}> 
+                    <textarea autoComplete="off" className={classes.textarea} style={{ display: editing ? 'block' : 'none' }} placeholder="Enter text" onChange={(e) => setPostData({...postData, message: e.target.value})} value={postData.message}/>
                     <MDEditor.Markdown source={postData.message} className={`${editing ? classes.editorPrev : classes.markdownPrev}`}/>
                 </div>
 
+                {/*  btn */}
                 <div className={classes.formGroup}>
                     <input type="submit" className={`${classes.submitBtn} ${blog ? classes.updateBtn : classes.createBtn }`} value={blog ? "Update Post" : "Create Post"} />
                 </div>
             </form>
+            {/* container ends */}
         </div>
     )
 }

@@ -1,16 +1,14 @@
 import './App.scss';
 
 import * as Pages from './pages'
-/* -------------------------------------------------------------------------- */
-/*                                 Template Imports                           */
-/* -------------------------------------------------------------------------- */
 import * as Templates from './template'
 
 import { Route, Switch } from 'react-router-dom'
+import { Suspense, useEffect } from 'react'
 
+import LoadingAnimation from './components/LoadingAnimation/LoadingAnimation';
 import { getPosts } from './actions/posts'
 import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
 
 function App() {
   const dispatch = useDispatch()
@@ -24,14 +22,24 @@ function App() {
       <Templates.Navbar />
 
       <div className="pages">
-        <Switch>
-          <Route path="/" component={Pages.Home} exact={true} />
-          <Route path="/post/:id" component={Pages.Home} exact={true} />
-          <Route path="/form" component={Pages.InputForm} exact={true} />
-          <Route path="/form/:id" component={Pages.InputForm} exact={true} />
-          <Route path="/dashboard" component={Pages.Dashboard} exact={true} />
-          <Route component={Pages.Page404} />
-        </Switch>
+        <Suspense fallback={<LoadingAnimation />}>
+          <Switch>
+            <Route path="/"  exact={true}>
+              <Pages.Home />
+            </Route> 
+            <Route path="/post/:id" exact={true}>
+              <Pages.Home />
+            </Route>
+            <Route path="/form" exact={true} component={Pages.InputForm} />
+            <Route path="/form/:id" exact={true} component={Pages.InputForm} /> 
+            <Route path="/dashboard" exact={true}>
+              <Pages.Dashboard />
+            </Route>
+            <Route>
+              <Pages.Page404 />
+            </Route>
+          </Switch>
+        </Suspense>
       </div>
     </div>
   );
