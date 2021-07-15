@@ -1,11 +1,19 @@
+import { useDispatch, useSelector } from 'react-redux'
+
 import PostCard from '../PostCard/PostCard'
 // * Component Imports
 import SearchBar from '../SearchBar/SearchBar'
 import classes from './Posts.module.scss'
-import { useSelector } from 'react-redux'
+import { getPosts } from '../../actions/posts'
+import { useEffect } from 'react'
 
 const Posts = () => {
     const postData = useSelector((state: { postReducers: any }) => state.postReducers)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getPosts())
+    }, [dispatch])
     
     return (
         <div className={classes.container}>

@@ -34,14 +34,14 @@ const InputForm = (props: Props) => {
         if(blog._id) {
             if(window.confirm('Are you sure you want to update?')){
                 dispatch(updatePost(blog._id, postData))
-                history.push('')
+                history.push('/')
             } 
             
             history.goBack()
         } else {
             if(window.confirm('Are you sure you want to create the post?')){
                 dispatch(createPost(postData))
-                history.push('')
+                history.push('/')
             } 
 
             history.goBack()

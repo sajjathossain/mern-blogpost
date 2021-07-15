@@ -1,13 +1,27 @@
 import { AiFillLike, AiTwotoneDelete } from 'react-icons/ai';
 import { FaCaretSquareLeft, FaPencilRuler } from 'react-icons/fa'
 import { Link, useLocation } from 'react-router-dom'
+import { deletePost, likePost } from '../../actions/posts';
 
 import MDEditor from '@uiw/react-md-editor';
 import Moment from 'react-moment';
 import classes from './Post.module.scss'
+import { useDispatch } from 'react-redux';
 
 const Post = () => {
     let blog:any = useLocation().state
+    const dispatch = useDispatch()
+
+    const handleDelete = () => {
+        dispatch(deletePost(blog._id))
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                       TODO Solve error of liking post                      */
+    /* -------------------------------------------------------------------------- */
+    const handleLike = () => {
+        dispatch(likePost(blog._id))
+    }
 
     return (
         <div className={classes.container}>
@@ -17,7 +31,7 @@ const Post = () => {
                 </Link>
                 <span className={classes.date}>
                     <>
-                        <Link to="/like" className={classes.btn}>
+                        <Link to="" className={classes.btn} onClick={handleLike}>
                             {blog.likeCount} <AiFillLike /> 
                         </Link>
                         
@@ -28,7 +42,7 @@ const Post = () => {
                             <FaPencilRuler /> 
                         </Link>
 
-                        <Link to="/delete" className={`${classes.btn} ${classes.deleteBtn}`}>
+                        <Link to={`/`} className={`${classes.btn} ${classes.deleteBtn}`} onClick={handleDelete}>
                             <AiTwotoneDelete />
                         </Link>
                     </>

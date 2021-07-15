@@ -3,8 +3,16 @@ import { FaBookReader } from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import Moment from 'react-moment'
 import classes from './PostCard.module.scss'
+import { likePost } from '../../actions/posts'
+import { useDispatch } from 'react-redux'
 
 const PostCard = ({ post }: any) => {
+    const dispatch = useDispatch()
+
+    const handleLike = () => {
+        dispatch(likePost(post._id))
+    }
+
     return (
         <div className={classes.card} key={post._id}>
             <div className={classes.cardContainer}>
@@ -27,7 +35,7 @@ const PostCard = ({ post }: any) => {
                         <FaBookReader />
                     </Link>
 
-                    <Link to="/like" className={classes.btn}>
+                    <Link to="/" className={classes.btn} onClick={handleLike}>
                         {post.likeCount} <AiFillLike /> 
                     </Link>
                 </div>

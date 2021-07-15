@@ -10,6 +10,8 @@ const router = express.Router()
 router.get('/', postsControllers.index)
 router.post('/create', postsControllers.createPost)
 router.patch('/create/:id', postsControllers.updatePost)
-router.get('/getPost', postsControllers.getPost)
+router.get('/:id', postsControllers.getPost)
+router.delete('/:id', postsControllers.deletePost)
+router.patch('/:id/like', postsControllers.likePost)
 
 export default router
