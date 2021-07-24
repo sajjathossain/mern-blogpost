@@ -25,7 +25,7 @@ const Post = () => {
         setUpdatedPost({...updatedPost, likeCount: updatedPost.likeCount + 1})
         dispatch(likePost(updatedPost._id))
     }
-
+    
     return (
         <div className={classes.container}>
             <div className={classes.top}>

@@ -34,17 +34,13 @@ const InputForm = (props: Props) => {
         if(blog._id) {
             if(window.confirm('Are you sure you want to update?')){
                 dispatch(updatePost(blog._id, postData))
-                history.push('/')
-            } 
-            
-            history.goBack()
+                history.push(`/post/${blog._id}`, {...blog, title: postData.title, tags: postData.tags, message: postData.message})
+            }
         } else {
             if(window.confirm('Are you sure you want to create the post?')){
                 dispatch(createPost(postData))
-                history.push('/')
-            } 
-
-            history.goBack()
+                history.push("/")
+            }
         }
         dispatch(getPosts())
         setPostData({ title: '', tags: '', message: ''})
@@ -96,7 +92,7 @@ const InputForm = (props: Props) => {
                 </div>
 
                 {/*  btn */}
-                <div className={classes.formGroup}>
+                <div className={classes.formGroup} >
                     <input type="submit" className={`${classes.submitBtn} ${blog ? classes.updateBtn : classes.createBtn }`} value={blog ? "Update Post" : "Create Post"} />
                 </div>
             </form>
