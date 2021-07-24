@@ -7,20 +7,23 @@ import MDEditor from '@uiw/react-md-editor';
 import Moment from 'react-moment';
 import classes from './Post.module.scss'
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 const Post = () => {
     let blog:any = useLocation().state
+    const [updatedPost, setUpdatedPost] = useState({...blog})
     const dispatch = useDispatch()
 
     const handleDelete = () => {
-        dispatch(deletePost(blog._id))
+        dispatch(deletePost(updatedPost._id))
     }
 
     /* -------------------------------------------------------------------------- */
-    /*                       TODO Solve error of liking post                      */
+    /*                       NOTE Solve error of liking post                      */
     /* -------------------------------------------------------------------------- */
     const handleLike = () => {
-        dispatch(likePost(blog._id))
+        setUpdatedPost({...updatedPost, likeCount: updatedPost.likeCount + 1})
+        dispatch(likePost(updatedPost._id))
     }
 
     return (
@@ -31,13 +34,13 @@ const Post = () => {
                 </Link>
                 <span className={classes.date}>
                     <>
-                        <Link to="" className={classes.btn} onClick={handleLike}>
-                            {blog.likeCount} <AiFillLike /> 
-                        </Link>
+                        <div className={classes.btn} onClick={handleLike}>
+                            {updatedPost.likeCount} <AiFillLike onClick={handleLike} /> 
+                        </div>
                         
                         <Link to={{
-                            'pathname': `/form/${blog._id}`,
-                            'state': blog
+                            'pathname': `/form/${updatedPost._id}`,
+                            'state': updatedPost
                         }} className={classes.btn}>
                             <FaPencilRuler /> 
                         </Link>
@@ -47,23 +50,23 @@ const Post = () => {
                         </Link>
                     </>
                     <div className={classes.dText}>
-                        {blog.createdAt ? <Moment date={new Date(blog.createdAt)} format="dd - DD/MM/YYYY - HH:mm a" /> : 'unknown'}
+                        {blog.createdAt ? <Moment date={new Date(updatedPost.createdAt)} format="dd - DD/MM/YYYY - HH:mm a" /> : 'unknown'}
                     </div>
                 </span>
             </div>
             <div className={classes.content}>
                 <div className={classes.title}>
-                    <div className={classes.text}>{blog.title}</div>
+                    <div className={classes.text}>{updatedPost.title}</div>
                      <div className={classes.tags}>
                         {
-                            blog.tags.map((tag: string, index: number) => {
+                            updatedPost.tags.map((tag: string, index: number) => {
                                 return <div className={classes.tag} key={index}>{tag}</div>
                             })
                         }
                     </div>
                 </div>
                 <div className={classes.render}>
-                    <MDEditor.Markdown source={blog.message} className={classes.markdown} />
+                    <MDEditor.Markdown source={updatedPost.message} className={classes.markdown} />
                 </div>
             </div>
         </div>

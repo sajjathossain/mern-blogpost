@@ -58,7 +58,7 @@ export const likePost = (id: any) => async (dispatch: any) => {
   try {
     await api.likePost(id);
 
-    await dispatch({ type: "LIKE", payload: id });
+    await dispatch({ type: "UPDATE", payload: id });
   } catch (error) {
     console.log(error.message);
   }

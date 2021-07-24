@@ -8,6 +8,7 @@ export const fetchPosts = () => {
 export const createPost = (newPost: any) => {
   return axios.post(`${POSTS_URL}/create`, newPost);
 };
+
 export const updatePost = (id: any, updatedPost: any) => {
   return axios.patch(`${POSTS_URL}/create/${id}`, updatedPost);
 };
@@ -20,6 +21,6 @@ export const deletePost = (id: any) => {
   return axios.delete(`${POSTS_URL}/${id}`);
 };
 
-export const likePost = (id: any) => async (dispatch: any) => {
+export const likePost = (id: any) => {
   return axios.patch(`${POSTS_URL}/${id}/like`);
 };

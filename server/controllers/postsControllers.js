@@ -74,6 +74,7 @@ export const updatePost = async (req, res) => {
 /* -------------------------------------------------------------------------- */
 
 export const likePost = async (req, res) => {
+    console.log(req.params)
     const { id: _id} = req.params
 
     if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404)
@@ -82,5 +83,4 @@ export const likePost = async (req, res) => {
     const updatedPost = await PostsModel.findByIdAndUpdate(_id, { likeCount: post.likeCount +1 }, { new: true })
 
     return res.json(updatedPost)
-
 }
