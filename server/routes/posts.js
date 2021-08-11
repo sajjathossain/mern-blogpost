@@ -5,7 +5,6 @@ import express from 'express'
 
 const router = express.Router()
 
-
 // routers
 router.get('/', postsControllers.index)
 router.post('/create', postsControllers.createPost)
