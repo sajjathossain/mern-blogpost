@@ -1,62 +1,67 @@
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { createPost, getPosts, updatePost } from "../../actions/posts";
-import { useEffect, useState } from "react";
+import { Link, useHistory, useLocation } from 'react-router-dom'
+import { createPost, getPosts, updatePost } from '../../actions/posts'
+import { useEffect, useState } from 'react'
 
-import { IoCaretBackOutline } from "react-icons/io5";
-import MDEditor from "@uiw/react-md-editor";
-import classes from "./InputForm.module.scss";
-import { useDispatch } from "react-redux";
+import { IoCaretBackOutline } from 'react-icons/io5'
+import MDEditor from '@uiw/react-md-editor'
+import classes from './InputForm.module.scss'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useDispatch } from 'react-redux'
 
 interface Props {
-  title: string;
-  tags: string;
-  message?: string;
+  title: string
+  tags: string
+  message?: string
+  creator: string
 }
 
 const InputForm = (props: Props) => {
-  let blog: any = useLocation().state;
-  const history: any = useHistory();
+  const { user } = useAuth0()
+  let blog: any = useLocation().state
+  const history: any = useHistory()
   const [postData, setPostData] = useState({
-    title: "",
-    tags: "",
-    message: "",
-  });
-  const [editing, setEditing] = useState(true);
+    title: '',
+    tags: '',
+    message: '',
+    creator: user?.email,
+  })
+  const [editing, setEditing] = useState(true)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   /* -------------------------------------------------------------------------- */
   /*                        NOTE handling submit request                       */
   /* -------------------------------------------------------------------------- */
   const handleSubmit = (e: any) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if (blog._id) {
-      if (window.confirm("Are you sure you want to update?")) {
-        dispatch(updatePost(blog._id, postData));
+    if (blog) {
+      if (window.confirm('Are you sure you want to update?')) {
+        dispatch(updatePost(blog._id, postData))
         history.push(`/post/${blog._id}`, {
           ...blog,
           title: postData.title,
           tags: postData.tags,
           message: postData.message,
-        });
+          creator: user?.email,
+        })
       }
     } else {
-      if (window.confirm("Are you sure you want to create the post?")) {
-        dispatch(createPost(postData));
-        history.push("/");
+      if (window.confirm('Are you sure you want to create the post?')) {
+        dispatch(createPost(postData))
+        history.push('/')
       }
     }
-    dispatch(getPosts());
-    setPostData({ title: "", tags: "", message: "" });
-  };
+    dispatch(getPosts())
+    setPostData({ title: '', tags: '', message: '', creator: user?.email })
+  }
 
   /* -------------------------------------------------------------------------- */
   /*                 NOTE toggling view between edit and preview                */
   /* -------------------------------------------------------------------------- */
   const toggleView = () => {
-    setEditing(!editing);
-  };
+    setEditing(!editing)
+  }
 
   useEffect(() => {
     if (blog) {
@@ -64,18 +69,18 @@ const InputForm = (props: Props) => {
         title: blog.title,
         tags: blog.tags,
         message: blog.message,
-      });
+        creator: user?.email,
+      })
     }
-    console.log(blog);
-  }, [blog]);
+    // console.log(blog)
+  }, [blog])
 
   return (
     <div className={classes.container}>
-      {" "}
       {/* *container starts */}
       <div className={classes.header}>
         <div className={classes.text}>
-          <Link to={"/"} className={classes.hLink}>
+          <Link to={'/'} className={classes.hLink}>
             <IoCaretBackOutline />
             Home
           </Link>
@@ -83,14 +88,14 @@ const InputForm = (props: Props) => {
         <div className={classes.switcher}>
           <button
             type="button"
-            className={`${classes.btn} ${editing ? `${classes.active}` : ""}`}
+            className={`${classes.btn} ${editing ? `${classes.active}` : ''}`}
             onClick={() => toggleView()}
           >
             Edit
           </button>
           <button
             type="button"
-            className={`${classes.btn} ${!editing ? `${classes.active}` : ""}`}
+            className={`${classes.btn} ${!editing ? `${classes.active}` : ''}`}
             onClick={() => toggleView()}
           >
             Preview
@@ -131,7 +136,7 @@ const InputForm = (props: Props) => {
           <textarea
             autoComplete="off"
             className={classes.textarea}
-            style={{ display: editing ? "block" : "none" }}
+            style={{ display: editing ? 'block' : 'none' }}
             placeholder="Enter text"
             onChange={(e) =>
               setPostData({ ...postData, message: e.target.value })
@@ -151,13 +156,13 @@ const InputForm = (props: Props) => {
             className={`${classes.submitBtn} ${
               blog ? classes.updateBtn : classes.createBtn
             }`}
-            value={blog ? "Update Post" : "Create Post"}
+            value={blog ? 'Update Post' : 'Create Post'}
           />
         </div>
       </form>
       {/* container ends */}
     </div>
-  );
-};
+  )
+}
 
-export default InputForm;
+export default InputForm
